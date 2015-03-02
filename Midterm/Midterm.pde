@@ -3,7 +3,7 @@ float cargenerator;
 int cargeneratoround;
 int count = 0;
 //int numobs = 0;
-Obstic[] myCars = new Obstic[1]; 
+Obstic[] myCars = new Obstic[0];
 
 void setup() {
   size(1280, 720, P3D);
@@ -11,7 +11,7 @@ void setup() {
 }
 void draw() {
   //boxsize+=80;
-  cargenerator = random(500);
+  cargenerator = random(50);
   cargeneratoround = round(cargenerator);
   background(0);
   stroke(255);
@@ -23,14 +23,17 @@ void draw() {
     box(100);
   popMatrix();//}
   int index = 0;
-  if (cargeneratoround == 50) {
+  if (cargeneratoround == 25) {
     count++;
     myCars[myCars.length-1] = new Obstic(1, random(width));
-    expand(myCars);
+    expand(myCars,myCars.length+1);
+    //append(myCars,new Obstic(1, random(width)));
+    //myCars.add(new Obstic(1, random(width)));
+    println(myCars.length);
   }
   if (count > 0) {
-    for (int i=0; i<myCars.length; i++) {
-      myCars[i].drive();
+    for (Obstic car : myCars) {
+      car.drive();
     }
   }
   line(0, height, width/2, height/2);
