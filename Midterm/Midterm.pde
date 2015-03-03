@@ -4,10 +4,13 @@ int cargeneratoround;
 int count = 0;
 //int numobs = 0;
 Obstic[] myCars = new Obstic[0];
-
+ArrayList obsticles;
+int boxplace;
 void setup() {
   size(1280, 720, P3D);
+  obsticles = new ArrayList();
   rand = random(width);
+  boxplace = width/2;
 }
 void draw() {
   //boxsize+=80;
@@ -25,15 +28,16 @@ void draw() {
   int index = 0;
   if (cargeneratoround == 25) {
     count++;
-    myCars[myCars.length-1] = new Obstic(1, random(width));
-    expand(myCars,myCars.length+1);
+    //myCars[myCars.length-1] = new Obstic(1, random(width));
+    //expand(myCars,myCars.length+1);
     //append(myCars,new Obstic(1, random(width)));
-    //myCars.add(new Obstic(1, random(width)));
+    obsticles.add(new Obstic(1, random(width)));
     println(myCars.length);
   }
   if (count > 0) {
-    for (Obstic car : myCars) {
-      car.drive();
+    for (int i = 0; i < obsticles.size(); i++) {
+      Obstic p = (Obstic) obsticles.get(i);
+      p.drive();
     }
   }
   line(0, height, width/2, height/2);
